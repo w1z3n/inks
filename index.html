@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Мои соцсети</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Onest:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--ink:#101223;--muted:#5d6280;--line:#101223;--card:#ffffff;--accent:#3a36ff;--pop:#ffd23f}
+html[data-theme="dark"]{--bg:#14141b;--ink:#f3f3f8;--muted:#a3a6bd;--line:#3a3b52;--card:#1d1d27;--accent:#8c88ff;--pop:#ffd23f}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Onest",system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+main{max-width:480px;margin:0 auto;padding:28px 20px calc(32px + env(safe-area-inset-bottom,0px))}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:26px}
+h1{font-family:"Unbounded","Onest",sans-serif;font-weight:600;font-size:34px;line-height:1.1;margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:16px;line-height:1.4;margin:0}
+.theme{display:flex;border:2px solid var(--line);border-radius:999px;padding:3px;flex:none}
+.theme button{border:0;background:none;color:var(--muted);font:500 13px "Onest",sans-serif;padding:6px 10px;border-radius:999px;cursor:pointer}
+.theme button[aria-pressed="true"]{background:var(--accent);color:#fff}
+.theme button:focus-visible,.spin-btn:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+ul{list-style:none;margin:0 0 32px;padding:0;display:grid;gap:12px}
+.btn{appearance:none;-webkit-appearance:none;margin:0;display:flex;align-items:center;gap:14px;padding:12px 14px;background:var(--card);border:2px solid var(--line);border-radius:16px;color:var(--ink);text-decoration:none;transition:transform .12s ease;cursor:pointer;width:100%;font:inherit;text-align:left}
+.btn:active{transform:scale(.98)}
+.mark{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:"Unbounded",sans-serif;font-size:16px}
+.t{display:grid;gap:2px;min-width:0}
+.t b{font-weight:500;font-size:17px}
+.t span{color:var(--muted);font-size:14px}
+.slots{border:2px solid var(--line);border-radius:20px;padding:18px;background:var(--card)}
+.slots h2{font-family:"Unbounded","Onest",sans-serif;font-weight:600;font-size:18px;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+#emoji{display:inline-block}
+#emoji.wiggle{animation:wig .35s ease-in-out infinite}
+@keyframes wig{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(12deg)}}
+.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.reel{background:var(--pop);color:#101223;border:2px solid var(--line);border-radius:14px;height:96px;display:grid;place-items:center;font-family:"Unbounded",sans-serif;font-size:48px;overflow:hidden}
+.reel.spin{animation:jit .14s linear infinite}
+@keyframes jit{0%{transform:translateY(-4px)}50%{transform:translateY(4px)}100%{transform:translateY(-4px)}}
+.spin-btn{width:100%;border:0;border-radius:14px;background:var(--accent);color:#fff;font:500 17px "Onest",sans-serif;padding:15px;cursor:pointer}
+.spin-btn:disabled{opacity:.6;cursor:default}
+.note{color:var(--muted);font-size:13px;margin:12px 0 0;line-height:1.4}
+#jp{position:fixed;inset:0;z-index:50;background:rgba(10,10,20,.94);display:none;overflow:hidden;cursor:pointer}
+#jp.on{display:block}
+#jp .boom{position:absolute;left:50%;top:50%;font-family:"Unbounded",sans-serif;font-weight:600;font-size:34vw;color:#ffd23f;white-space:nowrap;opacity:0;transform:translate(-50%,-50%) scale(.2)}
+#jp.on .boom{animation:boom 1s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes boom{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}45%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}70%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(4.5)}}
+#jp .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+#jp.on .flash{animation:flash .5s ease-out .85s forwards}
+@keyframes flash{0%{opacity:.9}100%{opacity:0}}
+#jp .s{position:absolute;left:0;top:0;white-space:nowrap;font-family:"Unbounded",sans-serif;font-weight:600;line-height:1;opacity:0;will-change:transform}
+#jp.on .s{animation-name:fly;animation-timing-function:linear;animation-iteration-count:infinite;animation-fill-mode:backwards}
+@keyframes fly{0%{opacity:0;transform:translateX(var(--from)) rotate(var(--a))}8%{opacity:1}92%{opacity:1}100%{opacity:1;transform:translateX(var(--to)) rotate(var(--a))}}
+@media (prefers-reduced-motion:reduce){.reel.spin,#emoji.wiggle{animation:none}#jp.on .boom{animation:none;opacity:1;transform:translate(-50%,-50%) scale(1)}#jp .flash{display:none}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>w1z3n</h1>
+      <p class="sub">Выбери, где со мной связаться</p>
+    </div>
+    <div class="theme" role="group" aria-label="Тема">
+      <button id="t-light" type="button" aria-pressed="true">Яркая</button>
+      <button id="t-dark" type="button" aria-pressed="false">Тёмная</button>
+    </div>
+  </header>
+
+  <ul id="list"></ul>
+
+  <section class="slots">
+    <h2><span id="emoji">🎰</span>Слоты</h2>
+    <div class="reels">
+      <div class="reel" id="r0">7</div>
+      <div class="reel" id="r1">7</div>
+      <div class="reel" id="r2">7</div>
+    </div>
+    <button class="spin-btn" id="spin" type="button">Крутить</button>
+    <p class="note">Просто для развлечения: ставок и призов нет.</p>
+  </section>
+</main>
+<div id="jp" role="button" aria-label="Закрыть">
+  <div class="boom">777</div>
+  <div id="stream"></div>
+  <div class="flash"></div>
+</div>
+<script>
+// Список кнопок. url: ссылка; copy: текст, который копируется по нажатию.
+var LINKS = [
+  {name:"Написать в Telegram", note:"Личные сообщения", url:"https://t.me/w1z3n", color:"#2aabee", ink:"#fff", mark:"T"},
+  {name:"Бот-секретарь", note:"Отвечу или передам сообщение", url:"https://t.me/w1z3nbot", color:"#ffd23f", ink:"#101223", mark:"W"},
+  {name:"Написать в MAX", note:"Личные сообщения", url:"https://max.ru/u/f9LHodD0cOK3Q7uA55x9tGr9Ev97XItRItOD_K6RcUDi-z9ffedkZp0GUlU", color:"#7b5cff", ink:"#fff", mark:"M"},
+  {name:"Мой TikTok", note:"Короткие ролики", url:"https://www.tiktok.com/@q.g.w1z3n.sb7", color:"#ff2d55", ink:"#fff", mark:"T"},
+  {name:"Мой Discord", note:"Нажми, чтобы скопировать ник", copy:"qg.w1z3n.sb7", color:"#5865f2", ink:"#fff", mark:"D"}
+];
+
+var tg = window.Telegram && window.Telegram.WebApp;
+try { if (tg) { tg.ready(); tg.expand(); } } catch (e) {}
+
+function haptic(kind) {
+  try { if (tg && tg.HapticFeedback) tg.HapticFeedback.impactOccurred(kind); } catch (e) {}
+}
+
+// ---- тема ----
+var COLORS = {light:"#ffffff", dark:"#14141b"};
+function setTheme(t) {
+  document.documentElement.setAttribute("data-theme", t);
+  document.getElementById("t-light").setAttribute("aria-pressed", t === "light");
+  document.getElementById("t-dark").setAttribute("aria-pressed", t === "dark");
+  try { if (tg) { tg.setHeaderColor(COLORS[t]); tg.setBackgroundColor(COLORS[t]); } } catch (e) {}
+  try { localStorage.setItem("theme", t); } catch (e) {}
+}
+var saved = "light";
+try { saved = localStorage.getItem("theme") === "dark" ? "dark" : "light"; } catch (e) {}
+setTheme(saved);
+document.getElementById("t-light").addEventListener("click", function () { setTheme("light"); });
+document.getElementById("t-dark").addEventListener("click", function () { setTheme("dark"); });
+
+// ---- ссылки ----
+function openLink(url) {
+  try {
+    if (tg && url.indexOf("https://t.me/") === 0) { tg.openTelegramLink(url); return; }
+    if (tg) { tg.openLink(url); return; }
+  } catch (e) {}
+  window.open(url, "_blank");
+}
+function copyText(text, done) {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text, done); });
+      return;
+    }
+  } catch (e) {}
+  fallbackCopy(text, done);
+}
+function fallbackCopy(text, done) {
+  var ta = document.createElement("textarea");
+  ta.value = text; document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); done(); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+var list = document.getElementById("list");
+LINKS.forEach(function (l) {
+  if (!l.url && !l.copy) return;
+  var li = document.createElement("li");
+  var a = document.createElement(l.copy ? "button" : "a");
+  a.className = "btn";
+  if (l.copy) a.type = "button"; else a.href = l.url;
+  var m = document.createElement("div");
+  m.className = "mark";
+  m.style.background = l.color;
+  m.style.color = l.ink;
+  m.textContent = l.mark;
+  var t = document.createElement("div");
+  t.className = "t";
+  var b = document.createElement("b");
+  b.textContent = l.name;
+  var s = document.createElement("span");
+  s.textContent = l.note;
+  t.appendChild(b); t.appendChild(s);
+  a.appendChild(m); a.appendChild(t);
+  a.addEventListener("click", function (ev) {
+    ev.preventDefault();
+    if (l.copy) {
+      copyText(l.copy, function () {
+        s.textContent = "Скопировано: " + l.copy;
+        haptic("light");
+        setTimeout(function () { s.textContent = l.note; }, 2500);
+      });
+    } else {
+      openLink(l.url);
+    }
+  });
+  li.appendChild(a);
+  list.appendChild(li);
+});
+
+// ---- слоты (просто игрушка) ----
+var reels = [document.getElementById("r0"), document.getElementById("r1"), document.getElementById("r2")];
+var btn = document.getElementById("spin");
+var emoji = document.getElementById("emoji");
+var spinning = false;
+var WIN_CHANCE = 0.2; // шанс выпадения 777: 0.2 = 20%, поменяй как хочешь
+var jp = document.getElementById("jp");
+var jpTimer = null;
+function hideJackpot() {
+  jp.classList.remove("on");
+  if (jpTimer) clearTimeout(jpTimer);
+}
+function showJackpot() {
+  var st = document.getElementById("stream");
+  st.innerHTML = "";
+  if (!calm) {
+    var cols = ["#ffd23f", "#ff2d55", "#ffffff", "#2aabee", "#7b5cff"];
+    for (var i = 0; i < 11; i++) {
+      var d = document.createElement("div");
+      var toLeft = Math.random() < 0.5;
+      d.className = "s";
+      d.style.top = (Math.random() * 100 - 8) + "%";
+      d.style.fontSize = (26 + Math.random() * 26) + "vw";
+      d.style.color = cols[i % cols.length];
+      d.style.setProperty("--a", (Math.random() * 80 - 40).toFixed(0) + "deg");
+      d.style.setProperty("--from", toLeft ? "0vw" : "-230vw");
+      d.style.setProperty("--to", toLeft ? "-230vw" : "0vw");
+      d.style.animationDuration = (1.6 + Math.random() * 1.4).toFixed(2) + "s";
+      d.style.animationDelay = (0.85 + i * 0.07).toFixed(2) + "s";
+      d.textContent = "7777777777";
+      st.appendChild(d);
+    }
+  }
+  jp.classList.remove("on");
+  void jp.offsetWidth;
+  jp.classList.add("on");
+  try {
+    if (tg && tg.HapticFeedback) {
+      tg.HapticFeedback.notificationOccurred("success");
+      setTimeout(function () { tg.HapticFeedback.impactOccurred("heavy"); }, 850);
+    }
+  } catch (e) {}
+  if (jpTimer) clearTimeout(jpTimer);
+  jpTimer = setTimeout(hideJackpot, 4800);
+}
+jp.addEventListener("click", hideJackpot);
+var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+btn.addEventListener("click", function () {
+  if (spinning) return;
+  spinning = true;
+  btn.disabled = true;
+  var win = Math.random() < WIN_CHANCE;
+  var finals = win ? [7, 7, 7] : [0, 0, 0].map(function () { return Math.floor(Math.random() * 10); });
+  if (!win && finals[0] === 7 && finals[1] === 7 && finals[2] === 7) finals[2] = 3;
+  if (!calm) emoji.classList.add("wiggle");
+  var stops = calm ? [0, 0, 0] : [900, 1400, 1900];
+  reels.forEach(function (el, i) {
+    var timer = null;
+    if (!calm) {
+      el.classList.add("spin");
+      timer = setInterval(function () { el.textContent = Math.floor(Math.random() * 10); }, 70);
+    }
+    setTimeout(function () {
+      if (timer) clearInterval(timer);
+      el.classList.remove("spin");
+      el.textContent = finals[i];
+      haptic("light");
+      if (i === reels.length - 1) {
+        emoji.classList.remove("wiggle");
+        spinning = false;
+        btn.disabled = false;
+        if (win) showJackpot();
+      }
+    }, stops[i]);
+  });
+});
+</script>
+</body>
+</html>
